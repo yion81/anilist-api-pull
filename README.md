@@ -38,10 +38,12 @@ If you want to clone and run this project on your own machine:
     ```
 2.  **Edit the serviceProvier file**
     Open App/Providers/AppServiceProvider.php, change 
-    ```php URL::forceScheme('https');
+    ```php
+    URL::forceScheme('https');
     ```
     to
-    ```php URL::forceScheme('http');
+    ```php
+    URL::forceScheme('http');
     ```
 
 3.  **Install Dependencies**
