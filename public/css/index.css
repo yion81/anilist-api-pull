@@ -1,0 +1,9 @@
+body { font-family: sans-serif; background: #141C33; color: white; text-align: center; }
+        
+nav { background: #1a1c29; padding: 15px; margin-bottom: 30px; }
+
+nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: bold; font-size: 18px; }
+
+nav a:hover { color: #3db4f2; }
+
+.welcome-box { border: 2px dashed #3db4f2; padding: 50px; display: inline-block; border-radius: 10px; }

@@ -1,0 +1,64 @@
+body { font-family: sans-serif; background: #141C33; color: white; text-align: center; }
+nav { background: #1a1c29; padding: 15px; margin-bottom: 30px; }
+nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: bold; font-size: 18px; }
+nav a:hover { color: #3db4f2; }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.manga-card {
+    background: #1a1c29;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s;
+    
+    /* FIX 1: Make every card the same height */
+    display: flex;          /* Turn on Flexbox */
+    flex-direction: column; /* Stack items vertically (Image top, Text bottom) */
+    height: 100%;           /* Force card to fill the grid slot */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.manga-card:hover { transform: translateY(-5px); }
+
+.manga-card img {
+    width: 100%;
+    height: 280px;      /* Force all images to be exactly this tall */
+    object-fit: cover;  /* Crop the image slightly if it doesn't fit perfectly */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.manga-card h3 {
+    font-size: 1em;
+    margin: 15px 0 5px 0;
+    
+    /* FIX 2: Truncate text with "..." after 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show exactly 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2.4em; /* Fixed height for title area so cards align */
+}
+
+.manga-card h4 {
+    margin-top: auto; /* Push the chapter count to the very bottom */
+    color: #8899a6;
+    font-size: 0.9em;
+}
+
+.manga-card a { color: #3db4f2; text-decoration: none; }
+
+nav { background: #1a1c29; padding: 15px; margin-bottom: 30px; }
+
+nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: bold; font-size: 18px; }
+
+nav a:hover { color: #3db4f2; }
