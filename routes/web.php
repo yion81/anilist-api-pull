@@ -8,7 +8,9 @@ Route::get('/', [AniListController::class, 'index']);
 // Route to get the controllers
 // search / index.blade
 Route::get('/search', [AniListController::class, 'searchView']);
-Route::post('/search', [AniListController::class, 'search'])->name('anilist.search');
+Route::post('/search', [AniListController::class, 'processSearch'])->name('anilist.search');
+Route::get('/search/{username}', [AniListController::class, 'showResult'])->name('anilist.result');
+
 
 //mangaprogress / manga.blade
 Route::get('/myMangaProgress', [AniListController::class, 'myMangaProgress']);

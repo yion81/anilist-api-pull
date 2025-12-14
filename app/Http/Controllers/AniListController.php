@@ -18,15 +18,18 @@ class AniListController extends Controller
         return view('anilist.search');
     }
 
-    // Search request on the index.blade
-    public function search(Request $request)
+    public function processSearch(Request $request)
     {
         $request->validate([
             'username_input' => 'required|string',
         ]);
 
         $searchName = $request->input('username_input');
+        return redirect()->route('anilist.result', ['username' => $searchName]);
+    }
 
+    public function showResult($username)
+    {
         $query = '
         query ($name: String) {
             User (name: $name) {
@@ -56,14 +59,14 @@ class AniListController extends Controller
         $response = Http::post('https://graphql.anilist.co', [
             'query' => $query,
             'variables' => [
-                'name' => $searchName,
+                'name' => $username,
             ],
         ]);
         // Unpackage
         $data = $response->json();
 
         if (isset($data['errors'])) {
-            return back()->withErrors(['api_error' => $data['errors'][0]['message']]);
+            return redirect()->route('anilist.search')->withErrors(['api_error' => 'User not found or API error.']);
         }
         return view('anilist.search', ['userData' => $data['data']['User']]);
     }

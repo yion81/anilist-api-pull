@@ -12,6 +12,7 @@ A dynamic web application built with **Laravel (PHP)** that integrates with the 
 * **Dynamic Data Fetching:** Uses raw GraphQL queries sent via Laravel's HTTP Client.
 * **Robust Error Handling:** gracefully handles API timeouts and empty states (e.g., users with no history).
 * **Responsive UI:** Custom CSS Grid layout for manga cards and profile stats.
+* **Dynamic Routing:** Route links are dynamic.
 
 ## 🛠️ Tech Stack
 
@@ -35,24 +36,31 @@ If you want to clone and run this project on your own machine:
     git clone [https://github.com/yion81/anilist-app.git](https://github.com/yion81/anilist-app.git)
     cd anilist-app
     ```
+2.  **Edit the serviceProvier file**
+    Open App/Providers/AppServiceProvider.php, change 
+    ```php URL::forceScheme('https');
+    ```
+    to
+    ```php URL::forceScheme('http');
+    ```
 
-2.  **Install Dependencies**
+3.  **Install Dependencies**
     ```bash
     composer install
     ```
 
-3.  **Environment Setup**
+4.  **Environment Setup**
     ```bash
     cp .env.example .env
     php artisan key:generate
     ```
 
-4.  **Run the Server**
+5.  **Run the Server**
     ```bash
     php artisan serve
     ```
 
-5.  **Visit the App**
+6.  **Visit the App**
     Open `http://localhost:8000` in your browser.
 
 ## 🧠 What I Learned (Technical Highlights)
@@ -60,6 +68,7 @@ If you want to clone and run this project on your own machine:
 This project was built to transition from Vanilla PHP to a structured Framework environment. Key learnings include:
 
 * **MVC Architecture:** Separating logic (Controllers) from presentation (Blade Views) and routing.
+* **Dynamic Routing:** Instead of creating a separate route for every single user (which would be impossible), We create one pattern that matches millions of users.
 * **API Integration:** Moving from verbose `cURL` to Laravel's fluent `Http` client.
 * **Data sanitization:** Using Blade's `{{ }}` syntax to prevent XSS attacks compared to `echo`.
 * **GraphQL:** Writing and structuring complex queries to fetch nested JSON data (Media -> Title -> English/Romaji).
