@@ -3,7 +3,7 @@
 A dynamic web application built with **Laravel (PHP)** that integrates with the **AniList GraphQL API**. This project demonstrates Backend Engineering concepts including MVC architecture, third-party API consumption, and robust error handling.
 
 > **Status:** Active / Learning Project  
-> **Live Demo:** -
+> **Live Demo:** [Click Me](https://anilist-api-pull-production.up.railway.app/)
 
 ## 🚀 Key Features
 
@@ -32,7 +32,7 @@ If you want to clone and run this project on your own machine:
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/anilist-app.git](https://github.com/YOUR_USERNAME/anilist-app.git)
+    git clone [https://github.com/yion81/anilist-app.git](https://github.com/yion81/anilist-app.git)
     cd anilist-app
     ```
 
