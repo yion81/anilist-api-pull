@@ -14,7 +14,7 @@
         <h1>Search User</h1>
         
         <form method="POST" action="{{ route('anilist.search') }}">
-            @csrf <input type="text" name="username_input" placeholder="Enter username (e.g. yion81)" required>
+            @csrf <input type="text" name="username_input" placeholder="Enter username (e.g. yion)" required>
             <input type="submit" value="Search">
         </form>
 
@@ -28,11 +28,19 @@
                 <h2 style="text-align: center;">{{ $userData['name'] }}</h2>
                 <p style="text-align: center;">
                     <a href="{{ $userData['siteUrl'] }}" target="_blank">View on AniList</a>
-                </p>
-
+                </p>  
+                
                 <div class="stat-box">
                     <h3>📅 Join Date</h3>
                     <p>{{ date("l, F j, Y g:i A", $userData['createdAt']) }}</p>
+                </div>
+
+                <div class="stat-box">
+                    @if($userData['statistics']['anime']['count'] > $userData['statistics']['manga']['count'])
+                        <h3>This person is more of an anime watcher than a manga reader!</h3>
+                    @else
+                        <h3>This person is more of a manga reader than an anime watcher!</h3>
+                    @endif
                 </div>
 
                 <div class="stat-box">
@@ -40,6 +48,14 @@
                     <p>Count: {{ $userData['statistics']['anime']['count'] }}</p>
                     <p>Episodes: {{ $userData['statistics']['anime']['episodesWatched'] }}</p>
                     <p>Days: {{ number_format($userData['statistics']['anime']['minutesWatched'] / 60 / 24, 1) }}</p>
+                    <p>Mean Score: {{ $userData['statistics']['anime']['meanScore'] }}%</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>📺 Manga Stats</h3>
+                    <p>Count: {{ $userData['statistics']['manga']['count'] }}</p>
+                    <p>Episodes: {{ $userData['statistics']['manga']['chaptersRead'] }}</p>
+                    <p>Mean Score: {{ $userData['statistics']['manga']['meanScore'] }}%</p>
                 </div>
 
                 <div class="stat-box">

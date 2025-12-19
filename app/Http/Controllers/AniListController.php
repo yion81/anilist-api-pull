@@ -35,10 +35,15 @@ class AniListController extends Controller
             User (name: $name) {
                 id
                 name
-                avatar { large }
+                avatar {
+                    large
+                }
                 siteUrl
                 createdAt
-                previousNames { name createdAt }
+                previousNames {
+                    name
+                    createdAt
+                }
                 statistics {
                     anime {
                         count
@@ -48,10 +53,17 @@ class AniListController extends Controller
                         tags (limit: 5, sort: COUNT_DESC) { 
                             count
                             meanScore
-                            tag { name description }
+                            tag {
+                                name
+                                description
+                            }
                         }
                     }
-                    manga { count chaptersRead meanScore }
+                    manga {
+                        count
+                        chaptersRead
+                        meanScore
+                    }
                 }
             }
         }';
