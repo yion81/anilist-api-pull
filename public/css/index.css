@@ -1,9 +1,103 @@
-body { font-family: sans-serif; background: #141C33; color: white; text-align: center; }
-        
-nav { background: #1a1c29; padding: 15px; margin-bottom: 30px; }
+/* =========================================
+   1. GLOBAL THEME & RESET
+   ========================================= */
+* { box-sizing: border-box; }
 
-nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: bold; font-size: 18px; }
+body {
+    font-family: 'Overpass', sans-serif;
+    background-color: #0b1622; /* Main Dark Blue */
+    color: #d3d5f3;            /* Soft White Text */
+    margin: 0; padding: 0;
+    text-align: center;
+}
 
-nav a:hover { color: #3db4f2; }
+a { text-decoration: none; color: inherit; }
 
-.welcome-box { border: 2px dashed #3db4f2; padding: 50px; display: inline-block; border-radius: 10px; }
+/* =========================================
+   2. NAVIGATION BAR (Exact Match)
+   ========================================= */
+nav {
+    background: #1a1c29;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: flex; justify-content: center; align-items: center; gap: 25px;
+}
+nav a {
+    color: #a0b1c5; font-weight: bold; font-size: 18px; transition: color 0.2s;
+    line-height: 1;
+}
+nav a:hover, nav a.active { color: #3db4f2; }
+
+/* =========================================
+   3. HERO & CONTENT
+   ========================================= */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section {
+    margin-bottom: 40px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+h1 { 
+    font-size: 3rem; 
+    margin-bottom: 5px; 
+    color: white; 
+    font-weight: 700;
+}
+
+.subtitle { 
+    font-size: 1.1rem; 
+    color: #3db4f2; 
+    margin-bottom: 30px; 
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* --- THE MAIN CARD (Updated) --- */
+.cta-box {
+    background: #1a1c29;
+    
+    /* CHANGED: Replaced dashed jagged line with a smooth solid border */
+    border: 1px solid rgba(61, 180, 242, 0.3); 
+    
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    
+    /* Added a nice soft glow behind it */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
+}
+
+.cta-box p { 
+    font-size: 1.2rem; 
+    margin-bottom: 25px; 
+    color: #e1e6eb; 
+    line-height: 1.5;
+}
+
+.btn-primary {
+    background: #3db4f2; color: #141C33;
+    padding: 15px 35px; border-radius: 6px; font-weight: bold; font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(61, 180, 242, 0.3);
+    background: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -14,3 +14,7 @@ Route::get('/search/{username}', [AniListController::class, 'showResult'])->name
 
 //mangaprogress / manga.blade
 Route::get('/myMangaProgress', [AniListController::class, 'myMangaProgress']);
+
+Route::get('/tags', [AniListController::class, 'tagsView']);
+Route::post('/tags', [AniListController::class, 'processTagSearch'])->name('anilist.tags_process');
+Route::get('/tags/{username}', [AniListController::class, 'showTags'])->name('anilist.tags_result');

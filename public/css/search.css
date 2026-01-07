@@ -1,25 +1,230 @@
-body { font-family: sans-serif; text-align: center; background: #141C33; color: white; }
+/* =========================================
+   1. GLOBAL THEME & RESET
+   ========================================= */
+* { box-sizing: border-box; }
 
-.container { background: #2F456F; max-width: 500px; margin: 0 auto; padding: 20px; border-radius: 10px; }
+body {
+    font-family: 'Overpass', sans-serif;
+    background-color: #0b1622;
+    color: #bcbedc;
+    margin: 0; padding: 0;
+}
+a { text-decoration: none; color: inherit; }
 
-input[type="text"] { padding: 10px; width: 70%; border-radius: 4px; border: none;}
+/* =========================================
+   2. NAVIGATION BAR
+   ========================================= */
+nav {
+    background: #1a1c29;
+    padding: 20px 0;
+    margin-bottom: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: flex; justify-content: center; align-items: center; gap: 25px;
+}
+nav a {
+    color: #a0b1c5; font-weight: bold; font-size: 18px; transition: color 0.2s;
+    line-height: 1;
+}
+nav a:hover, nav a.active { color: #3db4f2; }
 
-input[type="submit"] { padding: 10px; background: #3db4f2; color: white; border: none; border-radius: 4px; cursor: pointer; }
+/* =========================================
+   3. SEARCH BAR (Smaller & Sleeker)
+   ========================================= */
+.search-container-centered {
+    background: #0b1622;
+    padding: 20px 0 40px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
 
-.result { margin-top: 30px; text-align: left; }
+input[type="text"] {
+    background: #151f2e;
+    border: 2px solid #2a2c3d;
+    color: #e1e6eb;
+    /* CHANGED: Smaller padding and width */
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+    width: 250px; 
+}
+input[type="text"]:focus {
+    width: 300px; /* Slight expansion on focus */
+    border-color: #3db4f2;
+    box-shadow: 0 0 10px rgba(61, 180, 242, 0.2);
+}
 
-.stat-box { background: #1a1c29; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
+input[type="submit"] {
+    background: #3db4f2;
+    color: #0b1622;
+    font-weight: bold;
+    border: none;
+    /* CHANGED: Smaller padding to match input */
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1rem;
+    transition: transform 0.1s;
+}
+input[type="submit"]:hover { transform: scale(1.05); background: white; }
 
-img { border-radius: 50%; width: 150px; display: block; margin: 0 auto; }
+/* =========================================
+   4. PROFILE LAYOUT
+   ========================================= */
+.profile-header {
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
 
-h1, h2, h3 { color: white; }
+.avatar {
+    /* CHANGED: Reverted back to 100px */
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    object-fit: cover;
+}
 
-a { color: #3db4f2; }
+.username {
+    /* CHANGED: Slightly smaller font to balance with 100px avatar */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
 
-.error { color: #ff4444; margin-top: 20px; font-weight: bold; }
+/* =========================================
+   5. GRID & CARDS
+   ========================================= */
+.content-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 20px;
+}
 
-nav { background: #1a1c29; padding: 15px; margin-bottom: 30px; }
+.sidebar { display: flex; flex-direction: column; gap: 15px; }
 
-nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: bold; font-size: 18px; }
+.card-box {
+    background: #151f2e;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-nav a:hover { color: #3db4f2; }
+.bio-text {
+    font-size: 0.9rem;
+    color: #9fadbd;
+    line-height: 1.5;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.label { font-size: 0.8rem; color: #8ba0b2; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.value { font-size: 1rem; color: #e1e6eb; font-weight: 600; }
+.value-highlight { color: #3db4f2; font-weight: bold; }
+
+.main-section { display: flex; flex-direction: column; gap: 30px; }
+
+.section-title {
+    color: #e1e6eb; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; border-left: 4px solid #3db4f2; padding-left: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    background: #151f2e;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.stat-block h3 { font-size: 0.8rem; color: #8ba0b2; margin: 0 0 5px 0; }
+.stat-block p { font-size: 1.2rem; color: #e1e6eb; margin: 0; font-weight: bold; }
+
+/* SPLIT VIEW */
+.habits-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.habit-card {
+    background: #151f2e;
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.habit-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #1a1c29;
+    padding-bottom: 8px;
+}
+.habit-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.habit-label { font-size: 0.85rem; color: #8ba0b2; }
+.habit-val { font-weight: bold; color: white; }
+
+/* ACHIEVEMENT CARDS */
+.achievement-card {
+    background: linear-gradient(135deg, #151f2e 0%, #1a2333 100%);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #2a2c3d;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.award-note {
+    font-size: 0.75rem; 
+    color: #8ba0b2; 
+    margin-top: 3px; 
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Good (Gold) */
+.achievement-gold {
+    border-color: #f1c40f;
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, #151f2e 100%);
+}
+.gold-icon { font-size: 1.8rem; }
+.gold-title { color: #f1c40f; font-weight: bold; font-size: 1rem; }
+
+/* Bad (Red) */
+.achievement-red {
+    border-color: #e84118;
+    background: linear-gradient(135deg, rgba(232, 65, 24, 0.1) 0%, #151f2e 100%);
+}
+.red-icon { font-size: 1.8rem; }
+.red-title { color: #e84118; font-weight: bold; font-size: 1rem; }
+
+/* Neutral/Low Plan (Blue) */
+.achievement-blue {
+    border-color: #3db4f2;
+    background: linear-gradient(135deg, rgba(61, 180, 242, 0.1) 0%, #151f2e 100%);
+}
+.blue-icon { font-size: 1.8rem; }
+.blue-title { color: #3db4f2; font-weight: bold; font-size: 1rem; }
+
+@media (max-width: 800px) {
+    .content-container { grid-template-columns: 1fr; }
+    .profile-header { flex-direction: column; text-align: center; }
+    .habits-split { grid-template-columns: 1fr; } 
+}
