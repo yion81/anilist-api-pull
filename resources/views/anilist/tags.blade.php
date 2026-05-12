@@ -18,8 +18,18 @@
         <div class="search-container">
             <h1 style="color: #e1e6eb;">Anilist Tag Bypass</h1>
             <form id="searchForm" method="POST" action="{{ route('anilist.tags_process') }}">
-                @csrf 
+                @csrf
                 <input type="text" name="username_input" placeholder="Enter username" value="{{ $username ?? '' }}" required>
+                <input type="number" name="tag_relevance" placeholder="Tag Relevance, Enter value (0-100)" value="{{ $tagrel ?? '' }}">
+                <select name="sort_by">
+                    <option value="count"      {{ ($sortBy ?? 'count') == 'count'      ? 'selected' : '' }}>Count</option>
+                    <option value="avg"        {{ ($sortBy ?? 'count') == 'avg'        ? 'selected' : '' }}>Mean Score</option>
+                    <option value="percent"    {{ ($sortBy ?? 'count') == 'percent'    ? 'selected' : '' }}>% of List</option>
+                </select>
+                <select name="sort_dir">
+                    <option value="desc" {{ ($sortDir ?? 'desc') == 'desc' ? 'selected' : '' }}>Descending</option>
+                    <option value="asc"  {{ ($sortDir ?? 'desc') == 'asc'  ? 'selected' : '' }}>Ascending</option>
+                </select>
                 <input type="submit" id="searchBtn" value="Search">
             </form>
             
@@ -32,6 +42,7 @@
             <div class="toggle-container">
                 <button class="toggle-btn active" onclick="showView('anime')" id="btn-anime">Anime</button>
                 <button class="toggle-btn" onclick="showView('manga')" id="btn-manga">Manga</button>
+                <button class="toggle-btn" onclick="showView('novel')" id="btn-novel">Light Novel</button>
             </div>
 
             <div id="view-anime" class="tags-grid active-view">
@@ -101,6 +112,40 @@
                     </div>
                 @endforeach
             </div>
+
+            <div id="view-novel" class="tags-grid">
+                @foreach($novelTags as $name => $data)
+                    <div class="tag-card">
+                        <div class="card-header">
+                            <span class="tag-title">{{ $name }}</span>
+                            <span class="rank-badge">{{ $loop->iteration }}</span>
+                        </div>
+                        
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <strong>{{ $data['count'] }}</strong>
+                                Entries
+                            </div>
+                            <div class="stat-item">
+                                <strong>{{ $data['avg'] }}%</strong>
+                                Mean Score
+                            </div>
+                            <div class="stat-item">
+                                <strong>{{ number_format($data['percent'], 1) }}%</strong>
+                                of List
+                            </div>
+                        </div>
+
+                        <div class="image-row">
+                            @foreach(array_slice($data['topSeries'], 0, 4) as $series)
+                                <div class="series-thumb">
+                                    <img src="{{ $series['image'] }}" title="{{ $series['title'] }}">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         @endif
     </div>
 
@@ -109,14 +154,16 @@
         function showView(type) {
             document.getElementById('view-anime').classList.remove('active-view');
             document.getElementById('view-manga').classList.remove('active-view');
+            document.getElementById('view-novel').classList.remove('active-view');
             document.getElementById('btn-anime').classList.remove('active');
             document.getElementById('btn-manga').classList.remove('active');
+            document.getElementById('btn-novel').classList.remove('active');
 
             document.getElementById('view-' + type).classList.add('active-view');
             document.getElementById('btn-' + type).classList.add('active');
         }
 
-        // LOADING SCRIPT (New)
+        // LOADING SCRIPT
         document.getElementById('searchForm').addEventListener('submit', function() {
             // Show the loading text
             document.getElementById('loading-message').style.display = 'block';

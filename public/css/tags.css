@@ -56,6 +56,10 @@ input[type="text"] {
     padding: 12px; border-radius: 6px; border: 2px solid #2a2c3d;
     background: #1a1c29; color: white; width: 300px; font-size: 1rem;
 }
+input[type="number"] {
+    padding: 12px; border-radius: 6px; border: 2px solid #2a2c3d;
+    background: #1a1c29; color: white; width: 300px; font-size: 1rem;
+}
 input[type="submit"] {
     padding: 12px 25px; border-radius: 6px; border: none; cursor: pointer;
     background: #3db4f2; color: #141C33; font-weight: bold; font-size: 1rem;
@@ -136,3 +140,26 @@ input[type="submit"] {
 
 /* Hidden helpers */
 .hidden { display: none; }
+
+select {
+    padding: 12px;
+    border-radius: 6px;
+    border: 2px solid #2a2c3d;
+    background: #1a1c29;
+    color: #a0b1c5;
+    font-size: 1rem;
+    font-family: 'Overpass', sans-serif;
+    cursor: pointer;
+    appearance: none; /* removes the ugly default OS arrow */
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238ba0b2' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 35px;
+    transition: border-color 0.2s;
+}
+
+select:focus {
+    outline: none;
+    border-color: #3db4f2;
+}

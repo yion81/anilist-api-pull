@@ -75,7 +75,7 @@ input[type="submit"]:hover { transform: scale(1.05); background: white; }
    4. PROFILE LAYOUT
    ========================================= */
 .profile-header {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto 20px auto;
     padding: 0 20px;
     display: flex;
@@ -104,7 +104,7 @@ input[type="submit"]:hover { transform: scale(1.05); background: white; }
    5. GRID & CARDS
    ========================================= */
 .content-container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px 40px 20px;
     display: grid;
