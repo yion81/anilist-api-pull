@@ -89,18 +89,18 @@
                         $a_desc = "You genuinely love the medium. You rarely rate anything below a 7.";
                     } elseif ($a_diff >= 3) {
                         $a_title = "Lenient Viewer"; $a_color = "#81ecec";
-                        $a_desc = "You tend to forgive bad animation if the story is fun.";
+                        $a_desc = "If it's fun, it's good!";
                     } 
                     // NEGATIVE (You rate lower than 68.2)
                     elseif ($a_diff <= -10) {
-                        $a_title = "The Gatekeeper"; $a_color = "#e84118";
+                        $a_title = "Erm..."; $a_color = "#e84118";
                         $a_desc = "Do you even watch for fun anymore?";
                     } elseif ($a_diff <= -6) {
                         $a_title = "Hard to Impress"; $a_color = "#e84118";
-                        $a_desc = "Average seasonal shows bore you. You need substance.";
+                        $a_desc = "You know what you like and don't like.";
                     } elseif ($a_diff <= -2.5) {
                         $a_title = "Critical Eye"; $a_color = "#e1b12c";
-                        $a_desc = "You analyze shows more than you simply 'watch' them.";
+                        $a_desc = "You know to dislike!";
                     }
                 @endphp
                 <div class="card-box">
@@ -112,13 +112,13 @@
                 </div>
 
                 @php
-                    $mangaAvg = 73.2;
+                    $mangaAvg = 69.2;
                     $m_score = $mangaStats['meanScore'];
                     $m_diff = $m_score - $mangaAvg;
                     
                     // Default
                     $m_title = "The Standard"; $m_color = "#e1e6eb"; 
-                    $m_desc = "Your ratings align perfectly with the manga average (~73%).";
+                    $m_desc = "Your ratings align perfectly with the manga average (~69.2%).";
 
                     // POSITIVE (You rate higher than 73.2)
                     if ($m_diff >= 10) {
@@ -126,24 +126,31 @@
                         $m_desc = "You somehow only read 10/10 bangers, or you just love everything.";
                     } elseif ($m_diff >= 5) {
                         $m_title = "Vibes Reader"; $m_color = "#4cd137";
-                        $m_desc = "If the art is good, you give it a good score. Simple as that.";
+                        $m_desc = "Reading is nice.";
                     } elseif ($m_diff >= 2) {
                         $m_title = "Glass Half Full"; $m_color = "#81ecec";
                         $m_desc = "You prefer to focus on the good parts of a story.";
                     } 
                     // NEGATIVE (You rate lower than 73.2)
                     elseif ($m_diff <= -8) {
-                        $m_title = "Scorched Earth"; $m_color = "#e84118";
+                        $m_title = "Erm..."; $m_color = "#e84118";
                         $m_desc = "Do you read for fun? be honest.";
                     } elseif ($m_diff <= -4) {
-                        $m_title = "Literary Critic"; $m_color = "#e84118";
-                        $m_desc = "You treat manga like classic literature. Plot holes ruin it for you.";
+                        $m_title = "Keen Eyes"; $m_color = "#e84118";
+                        $m_desc = "You know what you like and don't like.";
                     } elseif ($m_diff <= -1.5) {
-                        $m_title = "Nitpicker"; $m_color = "#e1b12c";
-                        $m_desc = "You get annoyed by slow pacing and generic tropes.";
+                        $m_title = "Almost there!"; $m_color = "#e1b12c";
+                        $m_desc = "You read often, don't you?";
                     }
                 @endphp
-
+                <div class="card-box">
+                    <div class="label">Manga Persona</div>
+                    <div class="value" style="color: {{ $m_color }}; font-size: 1.1rem;">{{ $m_title }}</div>
+                    <div style="font-size: 0.8rem; color: #8ba0b2; margin-top: 5px; line-height: 1.3;">
+                        {{ $m_desc }}<br><span style="opacity: 0.7;">(Rate {{ number_format(abs($m_diff), 1) }}% {{ $m_diff > 0 ? 'higher' : 'lower' }} than avg)</span>
+                    </div>
+                </div>
+                
                 @php
                     // --- ANIME CALCS ---
                     $scoreFormat = $userData['mediaListOptions']['scoreFormat'] ?? 'POINT_100';
@@ -211,14 +218,6 @@
                     
                     $totalDaysWatched = $userData['statistics']['anime']['minutesWatched'] / 60 / 24;
                 @endphp
-                <div class="card-box">
-                    <div class="label">Manga Persona</div>
-                    <div class="value" style="color: {{ $m_color }}; font-size: 1.1rem;">{{ $m_title }}</div>
-                    <div style="font-size: 0.8rem; color: #8ba0b2; margin-top: 5px; line-height: 1.3;">
-                        {{ $m_desc }}<br><span style="opacity: 0.7;">(Rate {{ number_format(abs($m_diff), 1) }}% {{ $m_diff > 0 ? 'higher' : 'lower' }} than avg)</span>
-                    </div>
-                </div>
-
                 <div class="card-box">
                     <div class="label">Joined Exact</div>
                     <div class="value" style="font-size: 0.9rem;">
@@ -370,7 +369,7 @@
                 </div>
 
                 @php
-                    $novelAvg = 80;
+                    $novelAvg = 79;
                     $ln_diff  = round($novelStats['meanScore'] - $novelAvg, 1);
                 @endphp
                 <div>
@@ -796,52 +795,86 @@
 
                     <div class="card-box">
                         <div class="label">Preference</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Whether you have more anime or manga entries on your list. Simple count comparison.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Whether you have more anime or manga entries on your list. Simple count comparison.
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="label">Mood</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Based on your last 50 activities, what media are you into recently.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Anime / Manga Persona</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Based on your mean score compared to the global AniList average (<strong style="color:#a0b1c5;">Anime: 68.2 | Manga: 73.2 | LN: 80</strong>). Positive diff = you rate higher than average, negative = stricter.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Based on your mean score compared to the global AniList average (<strong style="color:#a0b1c5;">Anime: 68.2 | Manga: 69.2 | LN: 79</strong>). Positive diff = you rate higher than average, negative = stricter.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Mean Score (+/- diff)</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Your average rating across all scored entries. The colored diff shows how far you are from the global average. <span style="color:#4cd137;">Green = above avg</span>, <span style="color:#e84118;">red = below avg</span>.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Your average rating across all scored entries. The colored diff shows how far you are from the global average. <span style="color:#4cd137;">Green = above avg</span>, <span style="color:#e84118;">red = below avg</span>.
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="label">Rewatch/Reread</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Shows your rewatch/reread, Seperated from total. Below is percentage of your rewatch/reread compared to total.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Standard Deviation</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">How spread out your scores are. Low = you give similar scores to everything. High = you clearly distinguish between what you love and hate.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            How spread out your scores are. Below is the range you tend to give anime/manga/ln.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Commitment %</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Of everything you've started (completed + dropped), how much did you actually finish? <span style="color:#4cd137;">>80% = Finisher</span>, <span style="color:#e84118;"><50% = Serial Dropper</span>.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Of everything you've started (completed + dropped), how much did you actually finish? <span style="color:#4cd137;">>80% = Finisher</span>, <span style="color:#e84118;"><50% = Serial Dropper</span>.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Planning List %</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">How much of your total list is sitting in "Plan to Watch/Read". <span style="color:#e84118;">>40%</span> is questionable</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            How much of your total list is sitting in "Plan to Watch/Read". <span style="color:#e84118;">>40%</span> just means you procrastinate alot.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Daily Avg</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Total episodes watched (or chapters read) divided by the number of days since you joined AniList. Accurate if you have anilist when you startetd watching/reading.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Total episodes watched (or chapters read) divided by the number of days since you joined AniList. Accurate if you have anilist when you startetd watching/reading.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Time Inactive</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Time since your last list activity on AniList. Calculated from the <code style="color:#3db4f2; font-size:0.8rem;">updatedAt</code> timestamp on your profile.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Time since your last list activity on AniList. Activity / Settings update included.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Joined Exact</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">The exact date and UTC time your AniList account was created, down to the second.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            The exact date and UTC time your AniList account was created, down to the second.
+                        </div>
                     </div>
 
                     <div class="card-box">
                         <div class="label">Achievements & Badges</div>
-                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">Awarded automatically based on your stats. <span style="color:#f9ca24;">Gold</span> = positive trait, <span style="color:#e84118;">Red</span> = questionable habit, <span style="color:#3db4f2;">Blue</span> = neutral observation.</div>
+                        <div style="font-size: 0.85rem; color: #8ba0b2; line-height: 1.5;">
+                            Awarded automatically based on your stats. <span style="color:#f9ca24;">Gold</span> = positive trait, <span style="color:#e84118;">Red</span> = questionable habit, <span style="color:#3db4f2;">Blue</span> = neutral observation.
+                        </div>
                     </div>
 
                 </div>
