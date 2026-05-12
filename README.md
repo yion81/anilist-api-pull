@@ -1,9 +1,9 @@
-# 🎬 AniList Web Tracker
+# Yion's Anilist Tools Stuff
 
 A dynamic web application built with **Laravel (PHP)** that integrates with the **AniList GraphQL API**. This project demonstrates Backend Engineering concepts including MVC architecture, third-party API consumption, and robust error handling. And somewhat creativity on what stats are interesting that anilist doesn't have!
 
 > **Status:** Active / Learning Project  
-> **Live Demo:** Broken
+> **Live Demo:** Broken (Woops)
 
 ## 🚀 Key Features
 
@@ -67,8 +67,8 @@ This project was built to transition from Vanilla PHP to a structured Framework 
 * **API Integration:** Moving from verbose `cURL` to Laravel's fluent `Http` client.
 * **Data Sanitization:** Using Blade's `{{ }}` syntax to prevent XSS attacks compared to `echo`.
 * **GraphQL:** Writing and structuring complex queries to fetch nested JSON data (Media -> Title -> English/Romaji).
-* **Outlier Calculations:** Instantly recognizes a data that is calculated might have outlier, eg (Deviation Range = (Meanscore-Deviation) till (Meanscore+Deviation) This could lead to 90+12 = 102% which is not possible, so immediately clamp it). 
+* **Outlier Calculations:** Instantly recognizes some data calculations might have outlier, eg (Deviation Range = (Meanscore-Deviation) till (Meanscore+Deviation) This could lead to 90+12 = 102% which is not possible, so immediately clamp it). 
 
 ## 📝 License
 
-This project is open-source and available under the [MIT license](https://opensource.org/licenses/MIT).
+It's opensource, do whatever.
