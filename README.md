@@ -2,17 +2,18 @@
 
 A dynamic web application built with **Laravel (PHP)** that integrates with the **AniList GraphQL API**. This project demonstrates Backend Engineering concepts including MVC architecture, third-party API consumption, and robust error handling. And somewhat creativity on what stats are interesting that anilist doesn't have!
 
-> **Status:** Active / Learning Project  
-> **Live Demo:** Broken (Woops)
+> **Status:** :3 / Learning Project  
+> **Live Demo:** Dead
 
 ## 🚀 Key Features
 
 * **User Profile Search:** Fetch real-time user data including avatars, bio, and watch/read statistics. And some unshown stats from anilist and only could be taken through anilist's API.
 * **AniList Tag Bypass:** Anilist has a limit of viewing only top 30 tags (top 100 for Tier 3 Donator), This uses anilist graphql (backend) and basically bypasses that and shows all.
 ![Tag](screenshots/tag.png)
+* **AniList Seperate Lightnovel-Manga** Anilist combines both lightnovel and manga together, I seperated them with their own anilist basic stat.
+![Tag](screenshots/tag.png)
 * **Dynamic Data Fetching:** Uses raw GraphQL queries sent via Laravel's HTTP Client.
 * **Robust Error Handling:** Gracefully handles API timeouts and empty states (e.g., users with no history).
-* **Responsive UI:** Custom CSS Grid layout for manga cards and profile stats.
 * **Dynamic Routing:** Route links are dynamic and scalable.
 
 ## 🛠️ Tech Stack
